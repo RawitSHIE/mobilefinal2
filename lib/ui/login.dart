@@ -36,7 +36,6 @@ class LoginState extends State {
       LoginUser.USERID = prefs.getString('userid');
       LoginUser.NAME = prefs.getString('name');
       LoginUser.AGE = prefs.getString('age');
-      LoginUser.QUOTE = prefs.getString('qoute');
     });
     print(prefs.getString('userid'));
     if (LoginUser.ID != null){
@@ -92,12 +91,10 @@ class LoginState extends State {
               LoginUser.USERID = userlist[i].userid;
               LoginUser.NAME = userlist[i].name;
               LoginUser.AGE = userlist[i].age;
-              LoginUser.QUOTE = userlist[i].quote;
               await prefs.setInt('id', LoginUser.ID);
               await prefs.setString('userid', LoginUser.USERID);
               await prefs.setString('name', LoginUser.NAME);
               await prefs.setString('age', LoginUser.AGE);
-              await prefs.setString('qoute', LoginUser.QUOTE);
               isUser = true;
               break;
             }

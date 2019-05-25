@@ -6,7 +6,7 @@ final String useridCol = 'userid';
 final String nameCol = 'name';
 final String ageCol = 'age';
 final String passCol = 'pass';
-final String quoteCol = 'quote';
+// final String quoteCol = 'quote';
 
 class User {
   int id;
@@ -14,7 +14,7 @@ class User {
   String name;
   String age;
   String pass;
-  String quote;
+  // String quote;
 
   User();
   User.formMap(Map<String, dynamic> map){
@@ -23,7 +23,7 @@ class User {
     this.name = map[nameCol];
     this.age = map[ageCol];
     this.pass= map[passCol];
-    this.quote = map[quoteCol];
+    // this.quote = map[quoteCol];
   }
 
   Map<String, dynamic> toMap() {
@@ -32,7 +32,7 @@ class User {
       nameCol: name,
       ageCol: age,
       passCol: pass,
-      quoteCol: quote,
+      // quoteCol: quote,
     };
     if (id != null) {
       map[idCol] = id; 
@@ -43,7 +43,7 @@ class User {
   @override
   String toString() {
     // TODO: implement toString
-    return "id : ${this.id} \nuserid : ${this.userid}\nname: ${this.name}\nage:${this.age}\npass:${this.pass}\nquote:${this.quote}";
+    return "id : ${this.id} \nuserid : ${this.userid}\nname: ${this.name}\nage:${this.age}\npass:${this.pass}";
   }
 }
 
@@ -59,7 +59,6 @@ class UserUtils {
         $nameCol text not null,
         $ageCol text not null,
         $passCol text not null,
-        $quoteCol text
       )
       ''');
     });
@@ -71,7 +70,7 @@ class UserUtils {
 
   Future<User> getUser(int id) async {
     List<Map<String, dynamic>> maps = await db.query(userTable,
-    columns: [idCol, useridCol, nameCol, ageCol, passCol, quoteCol],
+    columns: [idCol, useridCol, nameCol, ageCol, passCol],
     where: '$idCol =  ?',
     whereArgs:[id]);
     maps.length > 0 ? new User.formMap(maps.first) : null;
@@ -87,7 +86,7 @@ class UserUtils {
 
   Future<List<User>> getAllUser() async{
     await this.open("user.db");
-    var res = await db.query(userTable, columns: [idCol, useridCol, nameCol, ageCol, passCol, quoteCol]);
+    var res = await db.query(userTable, columns: [idCol, useridCol, nameCol, ageCol, passCol]);
     List<User> userList = res.isNotEmpty ? res.map((c) => User.formMap(c)).toList() : [];
     return userList;
   }

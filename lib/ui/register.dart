@@ -126,7 +126,6 @@ class RegisterState extends State<Register> {
             userData.name = usernamecontrol.text;
             userData.age = agecontrol.text;
             userData.pass = new_pass.text;
-            userData.quote = null;
 
             if (!await checkexist(userData)) {
               await user.insertUser(userData);

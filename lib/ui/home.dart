@@ -16,13 +16,6 @@ class Home extends StatefulWidget {
 class HomeState extends State {
   String quote = '';
 
-  @override
-  void setState(fn) {
-    // TODO: implement setState
-    super.setState(fn);
-    readlocalquote();
-  }
-
   Future<String> get getdir async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
@@ -44,21 +37,30 @@ class HomeState extends State {
       final file = await getfile;
       String localqoute = await file.readAsString();
       this.quote = localqoute;
+      LoginUser.QUOTE = localqoute;
       print('quote: $quote');
       return this.quote;
     } catch (e) {
-      return 'Error';
+      return 'ERROR';
     }
   }
 
+  @override
+  void setState(fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    readlocalquote();
+  }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    String wait ;
+    // String wait;
+    // setState(() {
+    //   readlocalquote();
+    //   wait = this.quote;
+    // });
     setState(() {
-      readlocalquote();
-      wait = this.quote;
     });
     return Scaffold(
       appBar: AppBar(
@@ -77,8 +79,7 @@ class HomeState extends State {
                 fontSize: 40,
               ),
             ),
-            Text(
-                "${this.quote == null ? '' : wait}"),
+            Text("${this.quote == null ? '' : this.quote}"),
             RaisedButton(
               child: Text(
                 "PROFILE SETUP",

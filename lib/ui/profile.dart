@@ -176,7 +176,7 @@ class ProfileState extends State {
           LoginUser.NAME = update.name = usernamecontrol.text;
           LoginUser.AGE = update.age = agecontrol.text;
           LoginUser.PASS = update.pass = new_pass.text;
-          LoginUser.QUOTE = update.quote = quotecontrol.text;
+          LoginUser.QUOTE = quotecontrol.text;
           writeContent(quotecontrol.text);
           await userdb.updateUser(update);
 
