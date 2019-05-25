@@ -57,6 +57,7 @@ class HomeState extends State {
     // TODO: implement build
     String wait ;
     setState(() {
+      readlocalquote();
       wait = this.quote;
     });
     return Scaffold(

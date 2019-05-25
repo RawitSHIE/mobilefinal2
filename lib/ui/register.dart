@@ -42,7 +42,7 @@ class RegisterState extends State<Register> {
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value.length < 6 || value.length > 12 || value.contains(' ')) {
-          return "Please input correct valid userId must be 6 - 12 character";
+          return "UserId must be 6 - 12 character";
         }
       },
     );
@@ -59,7 +59,7 @@ class RegisterState extends State<Register> {
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (countspace(value.trim()) != 1) {
-          return "A name must contain exactly 1 spacebar";
+          return "A name must contains First & Last name";
         }
       },
     );
