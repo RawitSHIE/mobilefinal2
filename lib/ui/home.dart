@@ -33,6 +33,12 @@ class HomeState extends State {
     return File('$path/data.txt');
   }
 
+  Future<File> clear() async {
+    final file = await getfile;
+    await file.writeAsString('');
+    print("clear complete");
+  }
+
   Future<String> readlocalquote() async {
     try {
       final file = await getfile;
@@ -44,6 +50,7 @@ class HomeState extends State {
       return 'Error';
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +77,7 @@ class HomeState extends State {
               ),
             ),
             Text(
-                "${this.quote == null ? '' : this.quote}"),
+                "${this.quote == null ? '' : wait}"),
             RaisedButton(
               child: Text(
                 "PROFILE SETUP",
@@ -110,6 +117,7 @@ class HomeState extends State {
                 await prefs.setString('name', LoginUser.NAME);
                 await prefs.setString('age', LoginUser.AGE);
                 await prefs.setString('qoute', LoginUser.QUOTE);
+                await clear();
                 Fluttertoast.showToast(
                     msg: "Sign out",
                     toastLength: Toast.LENGTH_SHORT,
