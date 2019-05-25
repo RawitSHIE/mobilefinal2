@@ -37,7 +37,9 @@ class HomeState extends State {
       final file = await getfile;
       String localqoute = await file.readAsString();
       this.quote = localqoute;
-      LoginUser.QUOTE = localqoute;
+      if (this.quote != null || this.quote != ''){
+        LoginUser.QUOTE = this.quote;
+      }
       print('quote: $quote');
       return this.quote;
     } catch (e) {
@@ -55,12 +57,8 @@ class HomeState extends State {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    // String wait;
-    // setState(() {
-    //   readlocalquote();
-    //   wait = this.quote;
-    // });
     setState(() {
+      readlocalquote();
     });
     return Scaffold(
       appBar: AppBar(
@@ -79,7 +77,7 @@ class HomeState extends State {
                 fontSize: 40,
               ),
             ),
-            Text("${this.quote == null ? '' : this.quote}"),
+            Text("${this.quote != null || LoginUser.QUOTE != this.quote ? this.quote : ''}"),
             RaisedButton(
               child: Text(
                 "PROFILE SETUP",
